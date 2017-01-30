@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 #
 # Byte 2 Version 2
-# 
-# Copyright 11/2013 Jennifer Mankoff
-#
-# Licensed under GPL v3 (http://www.gnu.org/licenses/gpl.html)
-#
+
 
 # standard imports you should have already been using
 import webapp2
@@ -35,26 +31,44 @@ TABLE_ID = '1oaLDbRwmrDQGRzzwTglGqSm2q0J-FTEOrOxV0rdu'
 # fusion tables API using the developer key
 service = build('fusiontables', 'v1', developerKey=API_KEY)
 
-# this is used for constructing URLs to google's APIS
-from googleapiclient.discovery import build
+# we are adding a new class that will 
+# help us to use jinja. MainHandler will sublclass this new
+# class (BaseHandler), and BaseHandler is in charge of subclassing
+# webapp2.RequestHandler
+class BaseHandler(webapp2.RequestHandler):
+    @webapp2.cached_property
+    def jinja2(self):
+        # Returns a Jinja2 renderer cached in the app registry.
+        return jinja2.get_jinja2(app=self.app)
+    
+    #lets jinja render our response
+    def render_response(self, _template, context):
+    	values = {'url_for': self.uri_for}
+    	
+    	logging.info(context)
+    	values.update(context)
+    	self.response.headers['Content-Type'] = 'text/html'
+    	
+    	#renders a template and writes the result to the response.
+    	try: 
+    		rv = self.jinja2.render_template(_template, **values)
+			self.response.headers['Content-type'] = 'text/html; charset=utf-8'
+			self.response.write(rv)
+		except TemplateNotFound:
+			self.abort(404)
+#			
+#class MainHandler(BaseHandler):
+#	
+#	def get(self): 
+#		"""default landing page"""
+#		
+#		data = self.get_all_data()
+#		context = {}
+#		
+#		self.render_response('index.html', context)
+#		
+#	def get_all_data(self):
+#		"""collect data from the server"""
+#		query = "SELECT * FROM " + TABLE_ID + "WHERE "
 
 
-
-from flask import Flask
-app = Flask(__name__)
-app.config['DEBUG'] = True
-
-# Note: We don't need to call run() since our application is embedded within
-# the App Engine WSGI application server.
-
-
-@app.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    """Return a custom 404 error."""
-    return 'Sorry, nothing at this URL.', 404
