@@ -15,7 +15,7 @@
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/theme.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
   </head>
 
   <body role="document">
@@ -46,18 +46,25 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
 	<h1>Accountability: About This Data Set</h1>
-        <p>Write a brief summary about the data set here</a></p>
+        <p>Do people living in rural counties have a higher life expectancy than people living in urban counties?</a></p>
       </div>
 
     
       <div class="page-header">
 	<h2>Where did this data come from?</h2>
-	<p>fill in</p>
+	<p>The idea for this project came out of work from the Robert Wood Johnson Foundation predicting life expectancy based on someone's zip code. 
+	I decided to take this idea a step further to compare the environment type of county they live in (rural vs. urban) to compare life expectancy.
+	My initial hypothesis, was that individuals living in a rural environment would have a higher life expectancy than those living in an urban environment.
+	This hypothesis was based on my own assumptions of different environmental factors.</p>
+	<p> I collected my data from the <a href="http://www.healthdata.org/data-visualization/life-expectancy-probability-death">Institute for Health Metrics and Evaluation (IHME)</a>
+	. In their data set, they compare life expectancy of US state counties compared to international life expectancy. They also break the data down into gender (male/female) and
+	race (white/African American).</p>
       </div>
       
       <div class="page-header">
 	<h2>Who has access to it?</h2>
-	<p>fill in</p>
+	<p>For the purposes of this assignment, I decided on two counties in Pennsylvania that I knew were considered rural (Indiana County) and urban (Allegheny County). My <a href="https://www.google.com/fusiontables/DataSource?docid=1b7jloWdN-2aUcthiNjw2aSpzV0HiXB57TjIlOq_4">Fusion Table</a> is
+	public and open for anyone to use. If someone was interested in more instances, they can download the entire data set from IHME.</p>
       </div>
 
 
@@ -67,7 +74,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script
+  		src="https://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  		crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
   </body>
