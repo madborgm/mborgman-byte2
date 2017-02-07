@@ -1,17 +1,9 @@
-# This file specifies your Python application's runtime configuration
-# including URL routing, versions, static file uploads, etc. See
-# https://developers.google.com/appengine/docs/python/config/appconfig
-# for details.
-
 runtime: python27
 api_version: 1
 threadsafe: yes
 
 # Handlers define how to route requests to your application.
 handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
 - url: /js
   static_dir: js
   application_readable: true
@@ -24,16 +16,12 @@ handlers:
 - url: /templates
   static_dir: templates
   application_readable: true
-
-
-- url: .*  # This regex directs all routes to main.app
+- url: .*
   script: main.app
 
 
 libraries:
--  name: webapp2
-   version: latest
--  name: jinja2
-   version: latest
--  name: ssl
-   version: latest
+- name: jinja2
+  version: latest
+- name: webapp2
+  version: latest
